@@ -41,3 +41,9 @@ Pour confirmer que l'installation s'est bien passée, lancez cette requête dans
 
 ```sql
 SELECT * FROM Vehicule;
+````
+-> Vous devez voir apparaître 50 lignes (ou plus selon le jeu de données) et la colonne id_station doit contenir des chiffres (et non [null]).
+
+## 👥 Auteurs
+
+Lucie BARREZ & Armand Levine
