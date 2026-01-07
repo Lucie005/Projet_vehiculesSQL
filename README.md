@@ -10,7 +10,7 @@ Ce projet a pour but de gérer une flotte de véhicules électriques, leurs stat
 - **Mission 4 (GitHub / versioning)** : historique de commits + dépôt partagé
 
 ## 📂 Contenu du dépôt
-- **`Analyse_ProjetSQL.pdf`** : conception (dictionnaire de données + MCD).
+- **`Analyse_ProjetSQL.pdf`** : conception (dictionnaire de données + MCD + MLD).
 - **`create_tables.sql`** : création des tables + contraintes + données de test.
 - **`queries.sql`** : requêtes avancées (min. 10), vues, fonction de calcul, triggers de mise à jour d'état.
 
