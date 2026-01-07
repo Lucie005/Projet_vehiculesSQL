@@ -1,49 +1,60 @@
 # 🚗 Projet BDD - Clara Mobility
 
 Bienvenue sur le dépôt du projet de base de données pour **Clara Mobility**.
-Ce projet a pour but de gérer une flotte de véhicules électriques, leurs stations, les utilisateurs et les locations.
+Ce projet a pour but de gérer une flotte de véhicules électriques, leurs stations, les utilisateurs, les locations et la maintenance.
+
+## 📌 Missions couvertes
+- **Mission 1 (Analyse / Merise)** : `Analyse_ProjetSQL.pdf`
+- **Mission 2 (Création PostgreSQL)** : `create_tables.sql`
+- **Mission 3 (Requêtes avancées : SELECT/JOIN/AGG, vues, fonctions, triggers)** : `queries.sql`
+- **Mission 4 (GitHub / versioning)** : historique de commits + dépôt partagé
 
 ## 📂 Contenu du dépôt
-
-* **`Analyse_ProjetSQL.pdf`** : Le dossier de conception (Mission 1) contenant le Dictionnaire de Données et le MCD.
-* **`create_tables.sql`** : Le script SQL principal (Mission 2). Il contient la structure complète de la base et les données.
-* **`vehicules_clara_2025.csv`** : Le fichier source des véhicules (présent pour archivage, mais déjà intégré dans le script SQL).
+- **`Analyse_ProjetSQL.pdf`** : conception (dictionnaire de données + MCD).
+- **`create_tables.sql`** : création des tables + contraintes + données de test.
+- **`queries.sql`** : requêtes avancées (min. 10), vues, fonction de calcul, triggers de mise à jour d'état.
 
 ## 🛠️ Prérequis
+- **PostgreSQL**
+- **pgAdmin 4** (ou psql)
 
-* **PostgreSQL** (Serveur de base de données)
-* **pgAdmin 4** (Interface de gestion)
+## 🚀 Installation (Guide "pas à pas")
 
-## 🚀 Installation (Guide "Pas à pas")
+### 1) Créer la base
+Dans pgAdmin :
+1. Clic droit sur **Databases** → **Create** → **Database...**
+2. Nom : `clara_mobility_db`
+3. **Save**
 
-Grâce à la méthode d'intégration SQL, l'installation est automatisée. **Aucun import manuel de fichier CSV n'est nécessaire.**
+### 2) Exécuter le script de création
+1. Clic droit sur `clara_mobility_db` → **Query Tool**
+2. Ouvrir `create_tables.sql`
+3. Exécuter (▶️)
 
-### 1. Création de la Base de Données
-1. Ouvrez **pgAdmin 4**.
-2. Faites un clic-droit sur **Databases** > **Create** > **Database...**
-3. Nommez la base : `clara_mobility_db`
-4. Cliquez sur **Save**.
+> Le script :
+> - supprime les tables si elles existent
+> - crée les 5 tables (Station, Utilisateur, Vehicule, Location, Maintenance)
+> - insère des données
+> - lie automatiquement les véhicules aux stations via la ville/localisation
 
-### 2. Exécution du Script
-1. Faites un clic-droit sur la nouvelle base `clara_mobility_db`.
-2. Sélectionnez **Query Tool**.
-3. Ouvrez le fichier `create_tables.sql` présent dans ce dépôt (ou copiez-collez son contenu dans l'éditeur).
-4. Cliquez sur le bouton **Execute** (▶️).
+### 3) Exécuter les requêtes avancées (Mission 3)
+Dans **Query Tool** :
+1. Ouvrir `queries.sql`
+2. Exécuter (▶️)
 
-> **Note :** Ce script va automatiquement :
-> * Supprimer les anciennes tables si elles existent (Nettoyage).
-> * Créer les 5 tables (Station, Utilisateur, Vehicule, Location, Maintenance).
-> * Insérer toutes les données (y compris les 200 véhicules).
-> * Relier les véhicules aux stations correspondantes.
+> `queries.sql` contient :
+> - des requêtes (SELECT/JOIN/AGG, sous-requêtes)
+> - 2 vues (`vue_locations_detaillees`, `vue_vehicules_maintenance`)
+> - une fonction (`calcul_cout_location`)
+> - des triggers qui mettent à jour automatiquement l'état du véhicule lors d'une location
 
-### 3. Vérification
-Pour confirmer que l'installation s'est bien passée, lancez cette requête dans le Query Tool :
-
+## ✅ Vérifications rapides
 ```sql
-SELECT * FROM Vehicule;
-````
--> Vous devez voir apparaître 50 lignes (ou plus selon le jeu de données) et la colonne id_station doit contenir des chiffres (et non [null]).
+SELECT COUNT(*) FROM Vehicule;
+SELECT * FROM Station;
+SELECT * FROM vue_locations_detaillees;
+```
 
 ## 👥 Auteurs
-
-Lucie BARREZ & Armand Levine
+- Lucie BARREZ
+- Armand Levine
